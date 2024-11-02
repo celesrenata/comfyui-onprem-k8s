@@ -49,7 +49,6 @@ spec:
           volumeMounts:
             - name: model-storage
               mountPath: /home/workspace/ComfyUI/models
-              readOnly: false
             - name: tmp
               mountPath: /home/workspace/ComfyUI/input
               subPath: input
@@ -63,7 +62,6 @@ spec:
         - name: model-storage
           persistentVolumeClaim:
             claimName: comfyui-model-pvc
-            readOnly: true
         - name: tmp
           persistentVolumeClaim:
             claimName: comfyui-tmp-pvc
