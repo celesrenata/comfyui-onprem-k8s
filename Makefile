@@ -1,6 +1,6 @@
 MODEL_PATH ?= $(HOME)/models
-COMFYUI_VERSION ?= 65a8659
-COMFYUI_MANAGER_VERSION ?= 294244b
+COMFYUI_VERSION ?= fc657f4
+COMFYUI_MANAGER_VERSION ?= bba55d4
 
 
 # Cluster
@@ -21,18 +21,18 @@ cluster-removal:
 
 # Docker - Plain ComfyUI
 docker-build:
-	docker build -t callisto.celestium.life:9500/celesrenata/comfyui-onprem-k8s:comfyui-$(COMFYUI_VERSION) \
+	docker build -t ghcr.io/celesrenata/comfyui-onprem-k8s:comfyui-$(COMFYUI_VERSION) \
 		--build-arg COMFYUI_VERSION=$(COMFYUI_VERSION) \
 		--build-arg COMFYUI_MANAGER_VERSION=$(COMFYUI_MANAGER_VERSION) \
 		-f docker/comfyui.Dockerfile .
 
 docker-push:
-	docker push --insecure-registry callisto.celestium.life:9500/celesrenata/comfyui-onprem-k8s:comfyui-$(COMFYUI_VERSION)
+	docker push ghcr.io/celesrenata/comfyui-onprem-k8s:comfyui-$(COMFYUI_VERSION)
 
 docker-run:
 	docker run -it --gpus all -p 50000:50000 \
 		-v $(HOME)/models:/home/workspace/ComfyUI/models \
-		callisto.celestium.life:9500/celesrenata/comfyui-onprem-k8s:comfyui-$(COMFYUI_VERSION)
+		ghcr.io/celesrenata/comfyui-onprem-k8s:comfyui-$(COMFYUI_VERSION)
 
 
 # Docker - Jupyter ComfyUI
